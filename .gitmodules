@@ -3,10 +3,14 @@
 	url = https://github.com/google/googletest.git
 [submodule "depends/ate-pairing"]
 	path = depends/ate-pairing
-	url = https://github.com/herumi/ate-pairing.git
+	url = https://github.com/obazl/ate-pairing.git
 [submodule "depends/xbyak"]
 	path = depends/xbyak
-	url = https://github.com/herumi/xbyak.git
+	url = https://github.com/obazl/xbyak.git
 [submodule "depends/libff"]
 	path = depends/libff
-	url = https://github.com/scipr-lab/libff.git
+	url = https://github.com/obazl/libff.git
+[submodule "depends/libff/depends/ate-pairing"]
+	url = https://github.com/obazl/ate-pairing.git
+[submodule "depends/libff/depends/xbyak"]
+	url = https://github.com/obazl/xbyak.git

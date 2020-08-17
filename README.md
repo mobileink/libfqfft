@@ -126,6 +126,40 @@ NUMA node0 CPU(s):     0-7
 
 ## Build guide
 
+### Bazel
+
+Tested on MacOS (Catalina) and Debian 9. All dependencies (except for
+host toolchain) are handled by Bazel.
+
+```
+$ git clone https://github.com/obazl/libfqfft.git --recursive
+$ cd libfqfft
+$ bazel test test
+```
+
+To use as a dependency, copy the repo rules from this WORKSPACE into
+client's WORKSPACE file, and use label `@libfqfft//libfqfft` as
+dependency in build rules.
+
+#### Configuration options
+
+Options are controlled by config_setting rules, which are controlled
+by passing flags on the command line. For example, passing
+`--//bzl/config:multicore` sets config setting `enable_multicore`,
+which is used to add `-DMULTICORE` to compile commands. To list
+available flags and config settings:
+
+```
+$ bazel query "kind(.*_flag, //...:*)" --output label_kind | sort
+$ bazel query "kind(config_setting, //...:*)" --output label_kind | sort
+```
+
+The definitions are in the BUILD.bazel files; configuration options
+(command-line flags etc.) are set in
+[bzl/config/vars.bzl](bzl/config/vars.bzl).
+
+### CMake
+
 The library has the following dependencies:
 
 * [CMake](http://cmake.org/)
@@ -137,7 +171,7 @@ The library has the following dependencies:
 
 The library has been tested on Linux, but it is compatible with Windows and Mac OS X. (Nevertheless, memory profiling works only on Linux machines.)
 
-### Installation
+#### Installation
 
 On Ubuntu 14.04 LTS:
 
@@ -145,7 +179,7 @@ On Ubuntu 14.04 LTS:
 sudo apt-get install build-essential git libboost-all-dev cmake libgmp3-dev libssl-dev libprocps3-dev pkg-config gnuplot-x11
 ```
 
-### Compilation
+#### Compilation
 
 Fetch dependencies from their GitHub repos:
 
@@ -165,7 +199,7 @@ For macOS compilation, as `libprocps` is not compatible, create the Makefile wit
 cmake .. -DWITH_PROCPS=OFF
 ```
 
-#### Options
+##### Options
 
 The following flags change the behavior of the compiled code:
 
@@ -195,7 +229,7 @@ make
 
 The above makes the `build` folder and compiles the profiling executables to the project root directory. To remove all executables, from the build folder, run `make clean`.
 
-### Using libfqfft as a library
+#### Using libfqfft as a library
 
 To install the libfqfft library:
 ```
