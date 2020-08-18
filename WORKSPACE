@@ -20,7 +20,7 @@ local_repository( name = "libff" , path = "depends/libff")
 # http_archive(
 #     name = "libff",
 #     urls = ["https://github.com/obazl/libff/archive/bzl-1.0.tar.gz"],
-#     # commit: 50d94e3116cbca886b2b09f8420bcff20dae0272
+#     # commit: 377e995d1a6cb6f0b250b79b3fb89291064a4c7b
 #     strip_prefix = "libff-bzl-1.0",
 #     # sha256 = "d280e666aa08cc2a458c034ece16c87861240e3c5b3cc727e902bd9ee0b19831"
 # )
